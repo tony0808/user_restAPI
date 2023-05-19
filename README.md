@@ -39,23 +39,62 @@ The API provides the following endpoints to perform CRUD operations on the `Pers
 - Response Format: JSON array
 - Response Body Example:
   ```json
-  [
-    {
-      "id": 1,
-      "username": "martin123",
-      "email": "martin@cinema.com",
-      "firstname": "Martin",
-      "lastname": "Scorcese"
+  {
+    "_embedded": {
+        "personList": [
+            {
+                "id": 1,
+                "username": "chrisnolan123",
+                "email": "nolan@email.com",
+                "firstname": "chris",
+                "lastname": "nolan",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8080/person/1"
+                    },
+                    "people": {
+                        "href": "http://localhost:8080/people"
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "username": "martinscorc123",
+                "email": "martin@email.com",
+                "firstname": "martin",
+                "lastname": "scorcese",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8080/person/2"
+                    },
+                    "people": {
+                        "href": "http://localhost:8080/people"
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "username": "example123",
+                "email": "test@email.com",
+                "firstname": "tony",
+                "lastname": "ivanov",
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8080/person/3"
+                    },
+                    "people": {
+                        "href": "http://localhost:8080/people"
+                    }
+                }
+            }
+        ]
     },
-    {
-      "id": 2,
-      "username": "quentin123",
-      "email": "quentin@cinema.com",
-      "firstname": "Quentin",
-      "lastname": "Tarantino"
-    },
-    ...
-  ]
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/people"
+        }
+    }
+   }
 
 ### Get One Person
 - URL: `/person/{id}`
@@ -66,12 +105,20 @@ The API provides the following endpoints to perform CRUD operations on the `Pers
 - Response Body Example:
   ```json
   {
-  "id": 1,
-  "username": "quentin123",
-  "email": "quentin@cinema.com",
-  "firstname": "Quentin",
-  "lastname": "Tarantino"
-}
+    "id": 1,
+    "username": "chrisnolan123",
+    "email": "nolan@email.com",
+    "firstname": "chris",
+    "lastname": "nolan",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/person/1"
+        },
+        "people": {
+            "href": "http://localhost:8080/people"
+        }
+    }
+  }
 
 ### Create Person
 - URL: `/person`
@@ -90,11 +137,19 @@ The API provides the following endpoints to perform CRUD operations on the `Pers
 - Response Body Example:
   ```json
   {
-  "id": 3,
-  "username": "quentin123",
-  "email": "quentin@cinema.com",
-  "firstname": "Quentin",
-  "lastname": "Tarantino"
+    "id": 4,
+    "username": "quentin123",
+    "email": "quentin@cinema.com",
+    "firstname": "Quentin",
+    "lastname": "Tarantino",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/person/4"
+        },
+        "people": {
+            "href": "http://localhost:8080/people"
+        }
+    }
   }
   
 ### Update Username Field
@@ -115,11 +170,19 @@ The API provides the following endpoints to perform CRUD operations on the `Pers
 - Response Body Example:  
     ``` json
     {
-    "id": 3,
+    "id": 4,
     "username": "newUsername",
     "email": "quentin@cinema.com",
     "firstname": "Quentin",
-    "lastname": "Tarantino"
+    "lastname": "Tarantino",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/person/4"
+        },
+        "people": {
+            "href": "http://localhost:8080/people"
+        }
+    }
     }
     
  ### Update Email Field
@@ -140,11 +203,19 @@ The API provides the following endpoints to perform CRUD operations on the `Pers
 - Response Body Example:  
     ``` json
     {
-    "id": 3,
+    "id": 4,
     "username": "quentin123",
     "email": "newEmail",
     "firstname": "Quentin",
-    "lastname": "Tarantino"
+    "lastname": "Tarantino",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/person/4"
+        },
+        "people": {
+            "href": "http://localhost:8080/people"
+        }
+    }
     }
 
  ### Update Firstname Field
@@ -165,11 +236,19 @@ The API provides the following endpoints to perform CRUD operations on the `Pers
 - Response Body Example:  
     ``` json
     {
-    "id": 3,
+    "id": 4,
     "username": "quentin123",
     "email": "quentin@cinema.com",
     "firstname": "newfirstname",
-    "lastname": "Tarantino"
+    "lastname": "Tarantino",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/person/4"
+        },
+        "people": {
+            "href": "http://localhost:8080/people"
+        }
+    }
     }
 
  ### Update Lastname Field
@@ -190,11 +269,19 @@ The API provides the following endpoints to perform CRUD operations on the `Pers
 - Response Body Example:  
     ``` json
     {
-    "id": 3,
+    "id": 4,
     "username": "quentin123",
     "email": "quentin@cinema.com",
     "firstname": "Quentin",
-    "lastname": "newLastname"
+    "lastname": "newLastname",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/person/4"
+        },
+        "people": {
+            "href": "http://localhost:8080/people"
+        }
+    }
     }
 
  ### Update All Fields
@@ -215,11 +302,19 @@ The API provides the following endpoints to perform CRUD operations on the `Pers
 - Response Body Example:  
     ``` json
     {
-    "id": 3,
+    "id": 4,
     "username": "newUsername",
     "email": "newEmail",
     "firstname": "newFirstname",
-    "lastname": "newLastname"
+    "lastname": "newLastname",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/person/4"
+        },
+        "people": {
+            "href": "http://localhost:8080/people"
+        }
+    }
     }
  
 ### Delete Person
