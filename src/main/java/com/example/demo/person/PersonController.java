@@ -36,8 +36,9 @@ public class PersonController {
     }
 
     @PostMapping("/person")
-    Person newPerson(@RequestBody @Valid Person newPerson) {
-        return personRepository.save(newPerson);
+    EntityModel<Person> newPerson(@RequestBody @Valid Person newPerson) {
+        personRepository.save(newPerson);
+        return assembler.toModel(newPerson);
     }
 
     @GetMapping("/person/{id}")
@@ -49,70 +50,80 @@ public class PersonController {
     }
 
     @PutMapping("/person/{id}/username")
-    Person updatePersonUsername(@RequestBody Person newPerson, @PathVariable Long id) {
+    EntityModel<Person> updatePersonUsername(@RequestBody Person newPerson, @PathVariable Long id) {
         return personRepository.findById(id)
                 .map(person -> {
                     person.setUsername(newPerson.getUsername());
-                    return personRepository.save(person);
+                    personRepository.save(person);
+                    return assembler.toModel(person);
                 })
                 .orElseGet(() -> {
                     newPerson.setId(id);
-                    return personRepository.save(newPerson);
+                    personRepository.save(newPerson);
+                    return assembler.toModel(newPerson);
                 });
     }
 
     @PutMapping("/person/{id}/email")
-    Person updatePersonEmail(@RequestBody Person newPerson, @PathVariable Long id) {
+    EntityModel<Person> updatePersonEmail(@RequestBody Person newPerson, @PathVariable Long id) {
         return personRepository.findById(id)
                 .map(person -> {
                     person.setEmail(newPerson.getEmail());
-                    return personRepository.save(person);
+                    personRepository.save(person);
+                    return assembler.toModel(person);
                 })
                 .orElseGet(() -> {
                     newPerson.setId(id);
-                    return personRepository.save(newPerson);
+                    personRepository.save(newPerson);
+                    return assembler.toModel(newPerson);
                 });
     }
 
     @PutMapping("/person/{id}/firstname")
-    Person updatePersonFirstname(@RequestBody Person newPerson, @PathVariable Long id) {
+    EntityModel<Person> updatePersonFirstname(@RequestBody Person newPerson, @PathVariable Long id) {
         return personRepository.findById(id)
                 .map(person -> {
                     person.setFirstname(newPerson.getFirstname());
-                    return personRepository.save(person);
+                    personRepository.save(person);
+                    return assembler.toModel(person);
                 })
                 .orElseGet(() -> {
                     newPerson.setId(id);
-                    return personRepository.save(newPerson);
+                    personRepository.save(newPerson);
+                    return assembler.toModel(newPerson);
                 });
     }
 
     @PutMapping("/person/{id}/lastname")
-    Person updatePersonLastname(@RequestBody Person newPerson, @PathVariable Long id) {
+    EntityModel<Person> updatePersonLastname(@RequestBody Person newPerson, @PathVariable Long id) {
         return personRepository.findById(id)
                 .map(person -> {
                     person.setLastname(newPerson.getLastname());
-                    return personRepository.save(person);
+                    personRepository.save(person);
+                    return assembler.toModel(person);
                 })
                 .orElseGet(() -> {
                     newPerson.setId(id);
-                    return personRepository.save(newPerson);
+                    personRepository.save(newPerson);
+                    return assembler.toModel(newPerson);
                 });
     }
 
     @PutMapping("/person/{id}")
-    Person updatePerson(@RequestBody Person newPerson, @PathVariable Long id) {
+    EntityModel<Person> updatePerson(@RequestBody Person newPerson, @PathVariable Long id) {
         return personRepository.findById(id)
                 .map(person -> {
                     person.setUsername(newPerson.getUsername());
                     person.setEmail(newPerson.getEmail());
                     person.setFirstname(newPerson.getFirstname());
                     person.setLastname(newPerson.getLastname());
-                    return personRepository.save(person);
+                    personRepository.save(person);
+                    return assembler.toModel(person);
                 })
                 .orElseGet(() -> {
                     newPerson.setId(id);
-                    return personRepository.save(newPerson);
+                    personRepository.save(newPerson);
+                    return assembler.toModel(newPerson);
                 });
     }
 
